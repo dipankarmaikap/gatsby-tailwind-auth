@@ -1,35 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
 import Header from "./Header";
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header />
       <div className="container mx-auto layout">
-        <main className="main py-8">{children}</main>
-        <footer className="footer">
+        <main className="main py-8 px-4">{children}</main>
+      </div>
+      <footer className="footer bg-gray-300">
+        <div className="container mx-auto p-4">
           © {new Date().getFullYear()}, Built with
           <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;
